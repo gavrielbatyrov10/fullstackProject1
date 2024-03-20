@@ -86,3 +86,49 @@ router.delete("/:reviewId", async (req, res, next) => {
     });
   }
 });
+
+router.put("/:reviewId", async (req, res, next) => {
+  try {
+    const userId = res.locals.user.id;
+    const reviewId = parseInt(req.params.reviewId);
+    const { rating, reviewText } = req.body;
+    const review = await prisma.review.findUnique({
+      where: {
+        id: reviewId,
+      },
+    });
+
+    if (!review) {
+      return next({
+        status: 404,
+        message: "Review not found.",
+      });
+    }
+    if (review.userId !== userId) {
+      return next({
+        status: 403,
+        message: "You are not allowed to edit this review.",
+      });
+    }
+    const updatedReview = await prisma.review.update({
+      where: {
+        id: reviewId,
+      },
+      data: {
+        rating: rating,
+        reviewText: reviewText,
+      },
+    });
+
+    return res.json({
+      status: 200,
+      message: "Review updated successfully.",
+      review: updatedReview,
+    });
+  } catch (error) {
+    return next({
+      status: 500,
+      message: error.message || "Internal Server Error",
+    });
+  }
+});
