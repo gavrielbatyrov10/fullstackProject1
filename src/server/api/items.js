@@ -5,13 +5,29 @@ const router = require("express").Router();
 module.exports = router;
 
 /** User must be logged in to access tasks. */
+
+router.get("/", async (req, res, next) => {
+  try {
+    const { search } = req.query;
+    const items = await prisma.item.findMany({
+      where: {
+        description: {
+          contains: search,
+        },
+      },
+    });
+    res.json(items);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.use((req, res, next) => {
   if (!res.locals.user) {
     return next(new ServerError(401, "You must be logged in."));
   }
   next();
 });
-
 /** Creates new items and sends it */
 router.post("/", async (req, res, next) => {
   try {
