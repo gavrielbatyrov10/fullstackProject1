@@ -7,18 +7,7 @@ import { useGetTasksQuery } from "./taskSlice";
 import "./Tasks.less";
 import store from "../../store";
 import { useNavigate } from "react-router-dom";
-// mock data
-const data = [
-  {
-    name: "Bestbuy",
-    address: "123 fake street",
-    avgReview: 9,
-  },
-  { name: "Bes", address: "1street", avgReview: 2 },
-  { name: "Besttt", address: "1stree4t", avgReview: 7 },
-];
 
-// mock data
 /** Main interface for user to interact with their tasks */
 export default function Tasks() {
   ///const token = useSelector(selectToken);

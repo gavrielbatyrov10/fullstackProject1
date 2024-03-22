@@ -14,6 +14,9 @@ router.get("/", async (req, res, next) => {
           contains: search,
         },
       },
+      include: {
+        Review: true,
+      },
     });
     res.json(items);
   } catch (err) {
