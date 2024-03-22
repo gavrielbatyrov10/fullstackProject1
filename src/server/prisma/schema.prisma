@@ -14,8 +14,8 @@ model User {
   id       Int       @id @default(autoincrement())
   username String    @unique
   password String
-  Comment  Comment[]
-  Review   Review[]
+  Comment  Comment[] //This is a user relationship with the comment and each user can have many comments
+  Review   Review[] //these are relationships
 }
 
 model Item {
@@ -28,9 +28,9 @@ model Review {
   id         Int       @id @default(autoincrement())
   rating     Int
   userId     Int
-  user       User      @relation(fields: [userId], references: [id])
+  user       User      @relation(fields: [userId], references: [id]) //the userId links to the user table by id
   itemId     Int
-  item       Item      @relation(fields: [itemId], references: [id])
+  item       Item      @relation(fields: [itemId], references: [id]) //This links itemId to the Item table by id
   reviewText String
   Comment    Comment[]
 }

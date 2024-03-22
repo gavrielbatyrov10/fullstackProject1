@@ -37,7 +37,7 @@ router.post("/", async (req, res, next) => {
     next(err);
   }
 });
-
+// this gets all the reviews by the userId
 router.get("/", async (req, res, next) => {
   try {
     const reviews = await prisma.review.findMany({
@@ -48,7 +48,7 @@ router.get("/", async (req, res, next) => {
     next(err);
   }
 });
-
+// this deletes it by the userId
 router.delete("/:reviewId", async (req, res, next) => {
   try {
     const reviewId = parseInt(req.params.reviewId);
@@ -86,7 +86,7 @@ router.delete("/:reviewId", async (req, res, next) => {
     });
   }
 });
-
+// this updates it by the userId
 router.put("/:reviewId", async (req, res, next) => {
   try {
     const userId = res.locals.user.id;
@@ -110,6 +110,7 @@ router.put("/:reviewId", async (req, res, next) => {
         message: "You are not allowed to edit this review.",
       });
     }
+    // this finds the review that has the specific id then updates it
     const updatedReview = await prisma.review.update({
       where: {
         id: reviewId,

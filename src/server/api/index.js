@@ -26,6 +26,7 @@ router.use(async (req, res, next) => {
   }
 });
 
+// importing from the routes from the specific files
 router.use("/auth", require("./auth"));
 router.use("/tasks", require("./tasks"));
 router.use("/items", require("./items"));

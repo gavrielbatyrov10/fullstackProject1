@@ -4,8 +4,7 @@ const prisma = require("../prisma");
 const router = require("express").Router();
 module.exports = router;
 
-/** User must be logged in to access tasks. */
-
+//  we are getting all the items and we are also searching by the description
 router.get("/", async (req, res, next) => {
   try {
     const { search } = req.query;
@@ -21,7 +20,7 @@ router.get("/", async (req, res, next) => {
     next(err);
   }
 });
-
+// this checks if the user is logged in
 router.use((req, res, next) => {
   if (!res.locals.user) {
     return next(new ServerError(401, "You must be logged in."));

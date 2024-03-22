@@ -12,12 +12,14 @@ import Root from "./layout/Root.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Review from "./features/tasks/Review.jsx";
+import Home from "./features/home/MyHome.jsx";
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
     children: [
-      { path: "/", element: <Tasks /> },
+      { path: "/", element: <Home /> },
       { path: "/tasks", element: <Tasks /> },
       { path: "/login", element: <AuthForm /> },
       { path: "/review", element: <Review /> },

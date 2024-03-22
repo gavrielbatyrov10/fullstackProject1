@@ -3,6 +3,7 @@ const prisma = require("../prisma");
 const { ServerError } = require("../errors");
 module.exports = router;
 
+// this creates a comment for the review id
 router.post("/reviews/:reviewId", async (req, res, next) => {
   try {
     const userId = res.locals.user.id;
@@ -46,6 +47,7 @@ router.post("/reviews/:reviewId", async (req, res, next) => {
   }
 });
 
+// its going to get all the comment of  a specific user id
 router.get("/", async (req, res, next) => {
   try {
     const userId = res.locals.user.id;
@@ -66,7 +68,7 @@ router.get("/", async (req, res, next) => {
     });
   }
 });
-
+// this  deletes the comment
 router.delete("/:commentId", async (req, res, next) => {
   try {
     const commentId = parseInt(req.params.commentId);
@@ -104,6 +106,8 @@ router.delete("/:commentId", async (req, res, next) => {
   }
 });
 
+//  this is to update the comment by the comment id
+// the url will be api/comments/the commentId
 router.put("/:commentId", async (req, res, next) => {
   try {
     const userId = res.locals.user.id;
@@ -123,7 +127,7 @@ router.put("/:commentId", async (req, res, next) => {
     }
     if (comment.userId !== userId) {
       return next({
-        status: 403,
+        status: 404,
         message: "You are not allowed to edit this comment.",
       });
     }
@@ -139,7 +143,7 @@ router.put("/:commentId", async (req, res, next) => {
     return res.json({
       status: 200,
       message: "Comment updated successfully.",
-      review: updatedComment,
+      comment: updatedComment,
     });
   } catch (error) {
     return next({
