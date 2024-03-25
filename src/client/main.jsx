@@ -13,6 +13,7 @@ import Root from "./layout/Root.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Review from "./features/tasks/Review.jsx";
 import Home from "./features/home/MyHome.jsx";
+import SingleItem from "../item/ItemDetails.jsx";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
       { path: "/tasks", element: <Tasks /> },
       { path: "/login", element: <AuthForm /> },
       { path: "/review", element: <Review /> },
+      { path: "/items/:id", element: <SingleItem /> },
     ],
   },
 ]);

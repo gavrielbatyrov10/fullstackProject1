@@ -23,6 +23,24 @@ router.get("/", async (req, res, next) => {
     next(err);
   }
 });
+
+router.get("/:id", async (req, res, next) => {
+  try {
+    // this turns it into an int
+    const id = parseInt(req.params.id);
+
+    const item = await prisma.item.findUnique({
+      // this gets the specific item from the item id
+      where: { id: id },
+      include: {
+        Review: true,
+      },
+    });
+    res.json(item);
+  } catch (err) {
+    next(err);
+  }
+});
 // this checks if the user is logged in
 router.use((req, res, next) => {
   if (!res.locals.user) {

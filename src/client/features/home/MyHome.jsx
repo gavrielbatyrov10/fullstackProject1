@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const [items, setitems] = useState(null);
@@ -13,14 +14,19 @@ export default function Home() {
     getItems();
   }, []);
   return (
-    <div>
-      {/* if itemes are there map it if not dont map it */}
-      {items &&
+    <div className="items-container">
+      <h2>Items</h2>
+      {items ? (
         items.map((item) => (
-          <div key={item.id}>
-            <h3>{item.description}</h3>
+          <div className="item-card" key={item.id}>
+            <Link to={`/items/${item.id}`} className="item-link">
+              <h3>{item.description}</h3>
+            </Link>
           </div>
-        ))}
+        ))
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
 }
