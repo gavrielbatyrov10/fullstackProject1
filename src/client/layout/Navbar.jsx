@@ -26,6 +26,15 @@ export default function Navbar() {
         <li>
           <NavLink to="/">Home</NavLink>
         </li>
+
+        {token ? (
+          <li>
+            <NavLink to="/reviews">Reviews</NavLink>
+          </li>
+        ) : (
+          ""
+        )}
+
         {token ? (
           <li>
             <a onClick={handleLogout}>Log Out</a>

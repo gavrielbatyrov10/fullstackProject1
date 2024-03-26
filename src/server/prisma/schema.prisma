@@ -21,6 +21,7 @@ model User {
 model Item {
   id          Int      @id @default(autoincrement())
   description String
+  userId      Int
   Review      Review[]
 }
 
@@ -30,7 +31,7 @@ model Review {
   userId     Int
   user       User      @relation(fields: [userId], references: [id]) //the userId links to the user table by id
   itemId     Int
-  item       Item      @relation(fields: [itemId], references: [id]) //This links itemId to the Item table by id
+  item       Item      @relation(fields: [itemId], references: [id], onDelete: Cascade) //This links itemId to the Item table by id
   reviewText String
   Comment    Comment[]
 }
@@ -41,5 +42,5 @@ model Comment {
   userId   Int
   user     User   @relation(fields: [userId], references: [id])
   reviewId Int
-  review   Review @relation(fields: [reviewId], references: [id])
+  review   Review @relation(fields: [reviewId], references: [id], onDelete: Cascade)
 }

@@ -55,14 +55,79 @@ router.post("/", async (req, res, next) => {
     if (!description) {
       throw new ServerError(400, "Description required.");
     }
-
+    const userId = res.locals.user.id;
     const item = await prisma.item.create({
       data: {
         description,
+        userId: userId,
       },
     });
     res.json(item);
   } catch (err) {
     next(err);
+  }
+});
+// delete
+router.delete("/:id", async (req, res, next) => {
+  try {
+    const id = parseInt(req.params.id);
+    await prisma.item.delete({
+      where: {
+        id: id,
+      },
+      include: {
+        Review: true,
+      },
+    });
+    res.json({ status: 200, message: "Item deleted successfully." });
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.put("/:itemId", async (req, res, next) => {
+  try {
+    const userId = res.locals.user.id;
+
+    const itemId = parseInt(req.params.itemId);
+    const { description } = req.body;
+    const item = await prisma.item.findUnique({
+      where: {
+        id: itemId,
+      },
+    });
+    res.json(item);
+    if (!item) {
+      return next({
+        status: 404,
+        message: "Item not found.",
+      });
+    }
+    if (item.userId !== userId) {
+      return next({
+        status: 403,
+        message: "You are not allowed to edit this item.",
+      });
+    }
+    // this finds the review that has the specific id then updates it
+    const itemUpdated = await prisma.item.update({
+      where: {
+        id: itemId,
+      },
+      data: {
+        description: description,
+      },
+    });
+
+    return res.json({
+      status: 200,
+      message: "item updated successfully.",
+      review: itemUpdated,
+    });
+  } catch (error) {
+    return next({
+      status: 500,
+      message: error.message || "Internal Server Error",
+    });
   }
 });

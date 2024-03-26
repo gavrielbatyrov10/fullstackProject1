@@ -13,7 +13,9 @@ import Root from "./layout/Root.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Review from "./features/tasks/Review.jsx";
 import Home from "./features/home/MyHome.jsx";
-import SingleItem from "../item/ItemDetails.jsx";
+import SingleItem from "./features/item/ItemDetails.jsx";
+import CreateItem from "./features/item/CreateItem.jsx";
+import Reviews from "./features/reviews/ListReviews.jsx";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +27,8 @@ const router = createBrowserRouter([
       { path: "/login", element: <AuthForm /> },
       { path: "/review", element: <Review /> },
       { path: "/items/:id", element: <SingleItem /> },
+      { path: "/create/items", element: <CreateItem /> },
+      { path: "/reviews", element: <Reviews /> },
     ],
   },
 ]);
