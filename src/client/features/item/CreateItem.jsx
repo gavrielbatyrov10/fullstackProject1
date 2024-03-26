@@ -2,24 +2,28 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { logout, selectToken } from "../../features/auth/authSlice";
+
 export default function CreateItem() {
   const [description, setDescription] = useState("");
   const token = useSelector(selectToken);
+
   const navigate = useNavigate();
+
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-      const response = await fetch("http://localhost:8000/api/items", {
+      const response = await fetch("/api/items", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify({ description }),
+        body: JSON.stringify({ description })
       });
       if (response.ok) {
         navigate("/");
       } else {
+        // think about setting an error in state so you can display it in your UI
         console.error("Failed to create item");
       }
     } catch (error) {

@@ -3,15 +3,18 @@ import { useParams } from "react-router-dom";
 import { logout, selectToken } from "../../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+
 export default function SingleItem() {
   const [item, setItem] = useState(null);
+  const [description, setDescription] = useState("");
+
   let { id } = useParams();
   const token = useSelector(selectToken);
   const navigate = useNavigate();
-  const [description, setDescription] = useState("");
+
   async function getItem() {
     try {
-      const response = await fetch(`http://localhost:8000/api/items/${id}`);
+      const response = await fetch(`/api/items/${id}`);
       const result = await response.json();
       setItem(result);
       setDescription(result.description);
@@ -19,16 +22,17 @@ export default function SingleItem() {
       console.error("Error fetching item:", error);
     }
   }
+
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-      await fetch(`http://localhost:8000/api/items/${item.id}`, {
+      await fetch(`/api/items/${item.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify({ description }),
+        body: JSON.stringify({ description })
       });
       navigate("/");
     } catch (error) {
@@ -45,6 +49,7 @@ export default function SingleItem() {
     const totalRating = reviews.reduce((acc, review) => acc + review.rating, 0);
     return totalRating / reviews.length;
   }
+
   return (
     <div className="single-item-container">
       {item ? (

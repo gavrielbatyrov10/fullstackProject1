@@ -8,10 +8,9 @@ export default function Home() {
   const [search, setSearch] = useState("");
   const token = useSelector(selectToken);
   const navigate = useNavigate();
+
   async function getItems(search = "") {
-    const response = await fetch(
-      `http://localhost:8000/api/items?search=${search}`
-    );
+    const response = await fetch(`/api/items?search=${search}`);
     const result = await response.json();
     setitems(result);
   }
@@ -20,14 +19,13 @@ export default function Home() {
     navigate("/create/items");
   }
 
-  <button onClick={() => handleDelete(item.id)}>Delete Item</button>;
   async function handleDelete(id) {
     try {
       await fetch(`http://localhost:8000/api/items/${id}`, {
         method: "DELETE",
         headers: {
-          Authorization: `Bearer ${token}`,
-        },
+          Authorization: `Bearer ${token}`
+        }
       });
       const response = await fetch(`http://localhost:8000/api/items`);
       const result = await response.json();
@@ -40,6 +38,7 @@ export default function Home() {
   useEffect(() => {
     getItems(search);
   }, [search]);
+
   return (
     <div className="items-container">
       <input
