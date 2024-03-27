@@ -15,6 +15,7 @@ import Home from "./features/home/MyHome.jsx";
 import SingleItem from "./features/item/ItemDetails.jsx";
 import CreateItem from "./features/item/CreateItem.jsx";
 import Reviews from "./features/reviews/ListReviews.jsx";
+import EditReview from "./features/reviews/EditReview.jsx";
 
 const router = createBrowserRouter([
   {
@@ -26,9 +27,10 @@ const router = createBrowserRouter([
       { path: "/review", element: <Review /> },
       { path: "/items/:id", element: <SingleItem /> },
       { path: "/create/items", element: <CreateItem /> },
-      { path: "/reviews", element: <Reviews /> }
-    ]
-  }
+      { path: "/reviews", element: <Reviews /> },
+      { path: "/edit/review/:id", element: <EditReview /> },
+    ],
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

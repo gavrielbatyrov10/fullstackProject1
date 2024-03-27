@@ -24,8 +24,8 @@ export default function Home() {
       await fetch(`http://localhost:8000/api/items/${id}`, {
         method: "DELETE",
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
       const response = await fetch(`http://localhost:8000/api/items`);
       const result = await response.json();
@@ -49,26 +49,32 @@ export default function Home() {
       />
       <h2>Items</h2>
       {token ? (
-        <button onClick={handleCreateItemClick}>Create Item</button>
+        <button className="create-btn" onClick={handleCreateItemClick}>
+          Create Item
+        </button>
       ) : (
         ""
       )}
-      {items ? (
-        items.map((item) => (
-          <div className="item-card" key={item.id}>
-            <Link to={`/items/${item.id}`} className="item-link">
-              <h3>{item.description}</h3>
-            </Link>
-            {token ? (
-              <button onClick={() => handleDelete(item.id)}>Delete Item</button>
-            ) : (
-              ""
-            )}
-          </div>
-        ))
-      ) : (
-        <p>Loading...</p>
-      )}
+      <div className="container">
+        {items ? (
+          items.map((item) => (
+            <div className="item-card" key={item.id}>
+              <Link to={`/items/${item.id}`} className="item-link">
+                <h3>{item.description}</h3>
+              </Link>
+              {token ? (
+                <button onClick={() => handleDelete(item.id)}>
+                  Delete Item
+                </button>
+              ) : (
+                ""
+              )}
+            </div>
+          ))
+        ) : (
+          <p>Loading...</p>
+        )}
+      </div>
     </div>
   );
 }

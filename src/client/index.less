@@ -42,7 +42,24 @@ a {
 
 .items-container {
   padding: 20px;
+
   
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.create-btn {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+text-align: center;
+margin-bottom: 1rem;
+margin-top: 1rem;
 }
 
 .item-card {
@@ -52,6 +69,8 @@ a {
  margin-bottom: 20px;
  padding: 15px;
  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+ margin: 1.5rem;
+
 }
 
 .item-link {
@@ -75,6 +94,9 @@ a {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 
@@ -94,17 +116,30 @@ a {
 .review-rating {
   font-weight: bold;
   color: #333;
+  text-align: center;
+  font-size: 1.4rem;
 }
 
 
 .review-text {
   margin-top: 5px;
-  color: #666;
+  color: #515357;
+  text-align: center;
 }
 
+.review-words {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
 
+.average-rating {
+  display: flex;
+  justify-content: center;
+}
 
-
+nav {
+  margin: 0 2rem;
+}
 // 
 .loader {
   width: 32px;
@@ -140,7 +175,10 @@ a {
 h1,h2,h3 {
   color: rgb(70, 107, 226);
   margin-bottom: 10px;
+  text-align: center;
 }
+
+
 
 button {
   background-color: black;
@@ -148,13 +186,19 @@ button {
   padding: 8px 20px;
   border-radius: 20px;
   cursor: pointer;
-
   border: rgb(60, 0, 150) 1px;
+  display: flex;
+  margin: 0 auto;
 }
 
 input {
-  width: 50vw;
+
+  width: 80%;
   height: 40px;
   border-radius: 20px;
   border: 1px solid blue;
+  padding: 10px;
+  display: flex;
+margin: 0 auto;
+margin-bottom: 8ch;
 }

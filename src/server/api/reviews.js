@@ -26,11 +26,11 @@ router.post("/", async (req, res, next) => {
     const userId = res.locals.user.id;
     const review = await prisma.review.create({
       data: {
-        itemId: itemId,
+        itemId: parseInt(itemId),
         reviewText: reviewText,
-        rating: rating,
-        userId: userId
-      }
+        rating: parseInt(rating),
+        userId: userId,
+      },
     });
     res.json(review);
   } catch (err) {
@@ -41,9 +41,24 @@ router.post("/", async (req, res, next) => {
 router.get("/", async (req, res, next) => {
   try {
     const reviews = await prisma.review.findMany({
-      where: { userId: res.locals.user.id }
+      where: { userId: res.locals.user.id },
     });
     res.json(reviews);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get("/:id", async (req, res, next) => {
+  try {
+    // this turns it into an int
+    const id = parseInt(req.params.id);
+
+    const review = await prisma.review.findUnique({
+      // this gets the specific review from the review id
+      where: { id: id },
+    });
+    res.json(review);
   } catch (err) {
     next(err);
   }
@@ -55,34 +70,34 @@ router.delete("/:reviewId", async (req, res, next) => {
     const userId = res.locals.user.id;
     const review = await prisma.review.findUnique({
       where: {
-        id: reviewId
-      }
+        id: reviewId,
+      },
     });
     if (review.userId !== userId) {
       return next({
         status: 403,
-        message: "You are not authorized to delete this review."
+        message: "You are not authorized to delete this review.",
       });
     }
 
     if (!review) {
       return next({
         status: 404,
-        message: "Review not found."
+        message: "Review not found.",
       });
     }
 
     await prisma.review.delete({
       where: {
-        id: reviewId
-      }
+        id: reviewId,
+      },
     });
 
     return res.json({ status: 200, message: "Review deleted successfully." });
   } catch (error) {
     return next({
       status: 500,
-      message: error.message || "Internal Server Error"
+      message: error.message || "Internal Server Error",
     });
   }
 });
@@ -94,42 +109,42 @@ router.put("/:reviewId", async (req, res, next) => {
     const { rating, reviewText } = req.body;
     const review = await prisma.review.findUnique({
       where: {
-        id: reviewId
-      }
+        id: reviewId,
+      },
     });
 
     if (!review) {
       return next({
         status: 404,
-        message: "Review not found."
+        message: "Review not found.",
       });
     }
     if (review.userId !== userId) {
       return next({
         status: 403,
-        message: "You are not allowed to edit this review."
+        message: "You are not allowed to edit this review.",
       });
     }
     // this finds the review that has the specific id then updates it
     const updatedReview = await prisma.review.update({
       where: {
-        id: reviewId
+        id: parseInt(reviewId),
       },
       data: {
-        rating: rating,
-        reviewText: reviewText
-      }
+        rating: parseInt(rating),
+        reviewText: reviewText,
+      },
     });
 
     return res.json({
       status: 200,
       message: "Review updated successfully.",
-      review: updatedReview
+      review: updatedReview,
     });
   } catch (error) {
     return next({
       status: 500,
-      message: error.message || "Internal Server Error"
+      message: error.message || "Internal Server Error",
     });
   }
 });
