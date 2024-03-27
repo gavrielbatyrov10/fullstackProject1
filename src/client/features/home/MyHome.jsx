@@ -60,6 +60,7 @@ export default function Home() {
           items.map((item) => (
             <div className="item-card" key={item.id}>
               <Link to={`/items/${item.id}`} className="item-link">
+                <img className="img" src={item.imageUrl} />
                 <h3>{item.description}</h3>
               </Link>
               {token ? (

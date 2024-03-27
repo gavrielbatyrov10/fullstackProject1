@@ -51,7 +51,7 @@ router.use((req, res, next) => {
 /** Creates new items and sends it */
 router.post("/", async (req, res, next) => {
   try {
-    const { description } = req.body;
+    const { description, imageUrl } = req.body;
     if (!description) {
       throw new ServerError(400, "Description required.");
     }
@@ -59,12 +59,14 @@ router.post("/", async (req, res, next) => {
     const item = await prisma.item.create({
       data: {
         description,
+        imageUrl,
         userId: userId,
       },
     });
     res.json(item);
   } catch (err) {
-    next(err);
+    // this returns the error message with the status code
+    res.status(err.statusCode || 500).json({ error: err.message });
   }
 });
 // delete
@@ -90,7 +92,7 @@ router.put("/:itemId", async (req, res, next) => {
     const userId = res.locals.user.id;
 
     const itemId = parseInt(req.params.itemId);
-    const { description } = req.body;
+    const { description, imageUrl } = req.body;
     const item = await prisma.item.findUnique({
       where: {
         id: itemId,
@@ -116,6 +118,7 @@ router.put("/:itemId", async (req, res, next) => {
       },
       data: {
         description: description,
+        imageUrl: imageUrl,
       },
     });
 

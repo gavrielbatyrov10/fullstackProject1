@@ -67,7 +67,7 @@ margin-top: 1rem;
  background-color: #f0f0f0;
  border-radius: 8px;
  margin-bottom: 20px;
- padding: 15px;
+ padding: 1rem;
  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
  margin: 1.5rem;
 
@@ -173,9 +173,17 @@ nav {
   
 
 h1,h2,h3 {
-  color: rgb(70, 107, 226);
-  margin-bottom: 10px;
+  color: rgb(57, 89, 194);
   text-align: center;
+  font-size: 0.6rem;
+  padding: 1rem;
+  
+}
+
+@media screen and (min-width: 768px) {
+  h1, h2, h3 {
+    font-size: 1rem;
+  }
 }
 
 
@@ -201,4 +209,17 @@ input {
   display: flex;
 margin: 0 auto;
 margin-bottom: 8ch;
+}
+
+
+label {
+  color: rgb(0, 73, 176);
+}
+
+img {
+  width: 90%;
+  height: 90%;
+display: flex;
+margin: 0 auto;
+border-radius: 1ch;
 }

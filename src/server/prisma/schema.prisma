@@ -21,6 +21,7 @@ model User {
 model Item {
   id          Int      @id @default(autoincrement())
   description String
+  imageUrl    String? //this makes the item able to have no imgUrl
   userId      Int
   Review      Review[]
 }

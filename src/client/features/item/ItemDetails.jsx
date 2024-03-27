@@ -10,6 +10,7 @@ export default function SingleItem() {
 
   const [item, setItem] = useState(null);
   const [description, setDescription] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   let { id } = useParams();
   const token = useSelector(selectToken);
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ export default function SingleItem() {
       const result = await response.json();
       setItem(result);
       setDescription(result.description);
+      setImageUrl(result.imageUrl);
     } catch (error) {
       console.error("Error fetching item:", error);
     }
@@ -34,7 +36,7 @@ export default function SingleItem() {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ description }),
+        body: JSON.stringify({ description, imageUrl }),
       });
       navigate("/");
     } catch (error) {
@@ -104,11 +106,22 @@ export default function SingleItem() {
       {item ? (
         <div className="item-details">
           <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
+            <label>
+              Description:
+              <input
+                type="text"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </label>
+            <label>
+              Image Url:
+              <input
+                type="text"
+                value={imageUrl}
+                onChange={(e) => setImageUrl(e.target.value)}
+              />
+            </label>
             {token ? <button type="submit">Edit</button> : ""}
           </form>
           <br />
