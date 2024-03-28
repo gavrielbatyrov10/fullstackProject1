@@ -130,6 +130,7 @@ margin-top: 1rem;
 .review-words {
   font-size: 1.4rem;
   margin-bottom: 1rem;
+  color: #428bca;
 }
 
 .average-rating {
@@ -142,6 +143,7 @@ nav {
 }
 // 
 .loader {
+
   width: 32px;
   height: 32px;
   position: relative;
@@ -175,16 +177,11 @@ nav {
 h1,h2,h3 {
   color: rgb(57, 89, 194);
   text-align: center;
-  font-size: 0.6rem;
+  font-size: 1.6rem;
   padding: 1rem;
   
 }
 
-@media screen and (min-width: 768px) {
-  h1, h2, h3 {
-    font-size: 1rem;
-  }
-}
 
 
 
@@ -197,6 +194,13 @@ button {
   border: rgb(60, 0, 150) 1px;
   display: flex;
   margin: 0 auto;
+}
+
+button:hover {
+color: #333;
+background-color: rgb(255, 255, 255);
+border: 1px solid black;
+transition: all 500ms ease ;
 }
 
 input {
@@ -213,7 +217,18 @@ margin-bottom: 8ch;
 
 
 label {
-  color: rgb(0, 73, 176);
+  color: rgb(57, 103, 168);
+  font-weight: bold;
+  border-bottom: 1px solid black;
+  padding-bottom: 3rem;
+}
+label:hover {
+  color: rgba(188, 206, 231, 0.452);
+  font-weight: bold;
+  border-bottom: 1px solid rgb(199, 191, 191);
+  padding-bottom: 3rem;
+  cursor: pointer;
+  transition: all 400ms ease;
 }
 
 img {

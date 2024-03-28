@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { logout, selectToken } from "../../features/auth/authSlice";
 
@@ -10,8 +9,8 @@ export default function Reviews() {
   async function getReviews() {
     const response = await fetch("/api/reviews", {
       headers: {
-        Authorization: `Bearer ${token}`
-      }
+        Authorization: `Bearer ${token}`,
+      },
     });
     const result = await response.json();
     setreviews(result);
@@ -28,7 +27,6 @@ export default function Reviews() {
       {reviews ? (
         reviews.map((item) => (
           <div className="item-card" key={item.id}>
-            <h3>{item.reviewRating}</h3>
             <h3>{item.reviewText}</h3>
           </div>
         ))
