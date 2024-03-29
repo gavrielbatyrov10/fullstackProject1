@@ -1,59 +1,81 @@
 # Full-stack Template
 
-This template provides a fully functional CRUD app. Once a user has successfully registered for an account and logged in, they can see their existing tasks, create new tasks, update existing tasks, and delete tasks.
+This template provides a fully functional CRUD app. Once a user has successfully registered for an account and logged in, they can see their existing items, create new items, update existing items, and delete items, add imges for items, and add reviews for those items.
 
 ## Getting Started
 
-1. Click "Use This Template" and "Create a new repository."
-2. Clone down your repo and run `npm install`.
-3. Create a `.env` file according to the provided `example.env`.
-4. Apply the initial Prisma migration and generate the client.\
-   `npx prisma migrate reset`
-5. Start developing!\
-   `npm run dev`
+1: Get All Items
 
-## Architecture
+- Endpoint: `/items`
+- Method: `GET`
+- Description: It gets all the items filterted by description
+- Response: Array of items and reviews.
 
-### Backend
+2: Get item by id
 
-The backend consists of an [Express](https://expressjs.com/) server with a SQLite database and [Prisma](https://www.prisma.io/) as the ORM. The entrypoint is `src/server/index.js`.
+- Endpoint: `/items/:id`
+- Method: `GET`
+- Description: Retrieves a specific item by its ID.
+- Response: Object of item and reviews.
 
-API routes can be found in `src/server/api/`.
+3: Create new item
 
-Authentication is handled with [JWT](https://github.com/auth0/node-jsonwebtoken). User passwords are hashed with [bcrypt](https://github.com/kelektiv/node.bcrypt.js).
+- Endpoint: `/items`
+- Method: `POST`
+- Description: Creates a new item.
+- Response: Object of the createad item .
+- Request Body:
+- `description`: Description of the item (required).
+- `imageUrl`: URL of the item's image.
 
-![Database schema as described below](database_schema.svg)
+4: Update item
 
-<details>
-<summary>Expand to see DBML</summary>
+- Endpoint: `/items/:itemId`
+- Method: `PUT`
+- Description: Updates an item.
+- Response: Object of the Updated item.
+- Request Body:
+- `description`: Description of the item (required).
+- `imageUrl`: URL of the item's image.
 
-```dbml
-Table User {
-  id        Serial  [pk]
-  username  String
-  password  String
-}
+5: Delete item
 
-Table Task {
-  id          Serial  [pk]
-  description String
-  done        Boolean
-  userId      Int
-}
+- Endpoint: `/items/:id`
+- Method: `DELETE`
+- Description: Deletes an item.
+- Response: status message
 
-Ref: User.id < Task.userId
-```
+6: Get reviews
 
-</details>
+- Endpoint: `/reviews`
+- Method: `GET`
+- Description: It gets all the reviews
+- Response: Array of reviews.
 
-### Frontend
+7: Create review
 
-The frontend is a [React](https://react.dev/) app created with [Vite](https://vitejs.dev/). Vite middleware is used in development, but the frontend should be built for production.
+- Endpoint: `/reviews/:id`
+- Method: `POST`
+- Description: Retrieves a specific review by its ID.
+- Response: Object of reviews.
+- Request Body:
+  - `itemId`: ID of the item being reviewed(required).
+  - `reviewText`: Text of the review (required).
+  - `rating`: Rating of the item (required).
 
-Routing is handled with [React Router](https://reactrouter.com/en/main). The router is defined in `src/client/main.jsx`.
+8: Update review
 
-Application state is managed with [Redux Toolkit](https://redux-toolkit.js.org/). The store is defined in `src/client/store/index.js`. Additional slices should be defined separately in `src/client/features`.
+- Endpoint: `/reviews/:itemId`
+- Method: `PUT`
+- Description: Updates a review.
+- Response: Object of the Updated review.
+- Request Body:
+  - `reviewText`: Text of the review (required).
+  - `rating`: Rating of the item (required).
 
-[RTK Query](https://redux-toolkit.js.org/rtk-query/overview) is used to handle data fetching. The central API slice is defined in `src/client/store/api.js` and is intended to stay empty. Additional endpoints should be injected separately in `src/client/features`.
+9: Delete review
 
-[Less](https://lesscss.org/) is used as the CSS preprocessor.
+- Endpoint: `/reviews/:id`
+- Method: `DELETE`
+- Description: Deletes a review.
+- Response: status message
