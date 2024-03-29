@@ -7,18 +7,20 @@ module.exports = router;
 //  we are getting all the items and we are also searching by the description
 router.get("/", async (req, res, next) => {
   try {
-    const { search } = req.query;
+    const { search } = req.query; //  if search has a value it gets the value
     const items = await prisma.item.findMany({
+      //it searches for the description
       where: {
         description: {
           contains: search,
         },
       },
+      // this gets the review linked to anitem
       include: {
         Review: true,
       },
     });
-    res.json(items);
+    res.json(items); // this returns an arr of items
   } catch (err) {
     next(err);
   }
