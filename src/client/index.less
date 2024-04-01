@@ -40,11 +40,7 @@ a {
 
 
 
-.items-container {
-  padding: 20px;
 
-  
-}
 
 .container {
   display: flex;
@@ -67,20 +63,22 @@ border-radius: 1px;
 }
 
 .item-card {
-
 border: 1px solid grey;
     border-radius: 1rem;
     margin: 1rem;
     padding: 0.8rem;
     box-shadow: 0 0 2px 2px rgba(255, 255, 255, 0.5);
-}
+    max-width: 70vw;
+    width: 20em;
+   
+
+  }
 
 .item-card:hover {
-  box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 3px 3px rgba(255, 255, 255, 0.5);
   transition: all 300ms;
 
 }
-
 .item-link {
  text-decoration: none;
  color: #333;
@@ -88,9 +86,10 @@ border: 1px solid grey;
 }
 
 .item-link:hover {
- text-decoration: underline 1px;
+ text-decoration: underline 2px;
  color: #f9f9f9;
-
+ text-underline-offset: 1rem;
+ transition: all 600ms ease-in-out;
 }
 
 
@@ -183,14 +182,20 @@ nav {
  0% {  box-shadow: 0 0 0 2px inset }
  100%{ box-shadow: 0 0 0 10px inset }
 }
-  
+
 
 h1,h2,h3 {
-  color: rgb(57, 89, 194);
+  color: white;
   text-align: center;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   padding: 1rem;
   
+}
+
+.edit-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -198,15 +203,39 @@ button {
   background-color: black;
   color: white;
   padding: 8px 25px;
-  // border-radius: 20px;
   cursor: pointer;
   border: rgb(60, 0, 150) 1px;
   display: flex;
   margin: 0 auto;
   border: 1px solid black;
   font-weight: bold;
-
+position: relative;
 }
+
+button::after {
+  content: "";
+  position: absolute;
+  top: -2px; 
+  left: -2px; 
+  width:100%;
+  height:100%;
+  border: 2px solid rgb(21, 75, 137); 
+  border-radius: 4px;
+  transform: scaleX(0); 
+  transform-origin: bottom left;
+  transition: transform 0.5s ease;
+}
+
+button:hover::after {
+  transform-origin: bottom right;
+  transform: scaleX(1); 
+}
+
+
+
+
+
+
 
 button:hover {
 color: #333;
@@ -216,8 +245,7 @@ transition: all 500ms ease ;
 }
 
 input {
-
-  width: 50%;
+  width: 40%;
   height: 30px;
   border-radius: 20px;
   border: 1px solid blue;
@@ -225,29 +253,126 @@ input {
   display: flex;
 margin: 0 auto;
 margin-bottom: 8ch;
+margin-top: 8ch;
 }
 
 
 label {
-  color: rgb(57, 103, 168);
+  color: rgb(22, 92, 132);
   font-weight: bold;
   border-bottom: 1px solid black;
   padding-bottom: 3rem;
 }
 label:hover {
-  color: rgba(188, 206, 231, 0.452);
+  color: rgba(94, 94, 94, 0.452);
   font-weight: bold;
   border-bottom: 1px solid rgb(199, 191, 191);
-  padding-bottom: 3rem;
   cursor: pointer;
   transition: all 400ms ease;
 }
 
 img {
-  width: 90%;
-  height: 90%;
+  width: 200px;
+  max-width: 200px;
+  height: 200px;
+  max-height: 90%;
 display: flex;
 margin: 0 auto;
 border-radius: 1ch;
 scale: 0.9;
 }
+
+.btn-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 1rem;
+  border: 3px solid rgb(0, 0, 0);
+  border-radius: 4px;
+  padding: 2px;
+  width: 17.5rem;  
+  position: relative;
+}
+.btn-wrapper:hover {
+  background-color: rgb(0, 0, 0);
+  
+  transition: all 400ms;
+}
+
+.btn-wrapper::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%; 
+  height: 2px;
+  background-color: rgb(0, 0, 0);
+  transform-origin: bottom left;
+  transform: scaleX(0);
+  transition: transform 0.6s ease; 
+}
+
+.btn-wrapper:hover::after {
+  transform-origin: bottom right;
+  transform: scaleX(1); 
+}
+
+
+.edit-btn {
+  margin: 0;
+}
+
+
+.delete-btn {
+  margin-top: 1rem;
+  margin: 0;
+}
+
+
+.nav-link {
+  position: relative;
+font-weight: bold;
+  padding: 12px;
+}
+
+
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  top: -2px; 
+  left: -2px;
+  width:100%;
+  height:100%;
+  border: 1px solid rgb(255, 255, 255); 
+  border-radius: 4px;
+  transform: scaleX(0);
+  transform-origin: bottom left;
+  transition: transform 0.5s ease;
+}
+
+.nav-link:hover::after {
+
+  transform-origin: bottom right;
+  transform: scaleX(1);
+}
+
+.nav-link-primary {
+  border: 1px solid white;
+  border-radius: 4px;
+}
+.nav-link-primary:hover {
+  border-color: #428bca;
+}
+
+a {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.loggin-user {
+  color: #f9f9f9;
+}
+

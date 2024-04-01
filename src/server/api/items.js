@@ -15,7 +15,7 @@ router.get("/", async (req, res, next) => {
           contains: search,
         },
       },
-      // this gets the review linked to anitem
+      // this gets the reviews that are linked to an item
       include: {
         Review: true,
       },
@@ -25,10 +25,9 @@ router.get("/", async (req, res, next) => {
     next(err);
   }
 });
-
 router.get("/:id", async (req, res, next) => {
   try {
-    // this turns it into an int
+    // this turns str into an int
     const id = parseInt(req.params.id);
 
     const item = await prisma.item.findUnique({
@@ -96,29 +95,33 @@ router.put("/:itemId", async (req, res, next) => {
     const itemId = parseInt(req.params.itemId);
     const { description, imageUrl } = req.body;
     const item = await prisma.item.findUnique({
+      //this will look for the specific id of an item  that is passed from the front end
       where: {
         id: itemId,
       },
     });
-    res.json(item);
+
     if (!item) {
       return next({
         status: 404,
         message: "Item not found.",
       });
     }
+    // if i  am trying to update someones item i cant i can only update my own item
     if (item.userId !== userId) {
       return next({
         status: 403,
         message: "You are not allowed to edit this item.",
       });
     }
-    // this finds the review that has the specific id then updates it
+    // this finds the item that has the specific id then updates it
     const itemUpdated = await prisma.item.update({
+      //this will look for the specific id of an item that is passed from the front end
       where: {
         id: itemId,
       },
       data: {
+        //this will update the description and imgUrl
         description: description,
         imageUrl: imageUrl,
       },

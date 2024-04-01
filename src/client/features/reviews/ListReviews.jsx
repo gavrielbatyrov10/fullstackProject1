@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { logout, selectToken } from "../../features/auth/authSlice";
+import { selectToken } from "../../features/auth/authSlice";
 
 export default function Reviews() {
   const [reviews, setreviews] = useState(null);

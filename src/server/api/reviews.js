@@ -12,9 +12,10 @@ router.use((req, res, next) => {
   next();
 });
 
-/** Creates new reviews and sends it */
+/** Creates new review and returns the newly created review */
 router.post("/", async (req, res, next) => {
   try {
+    // we destructure the req.body and then  check if the required fields are passed
     const { itemId, reviewText, rating } = req.body;
     if (!itemId) {
       throw new ServerError(400, "Item is required.");
@@ -23,7 +24,9 @@ router.post("/", async (req, res, next) => {
     } else if (!rating) {
       throw new ServerError(400, "Rating is required.");
     }
-    const userId = res.locals.user.id;
+    const userId = res.locals.user.id; //this gets the userId
+
+    // this creates a new review
     const review = await prisma.review.create({
       data: {
         itemId: parseInt(itemId),
@@ -41,19 +44,21 @@ router.post("/", async (req, res, next) => {
 router.get("/", async (req, res, next) => {
   try {
     const reviews = await prisma.review.findMany({
+      // this will search the dataBase for the userId to see if it matches the userId of the current logged in user
       where: { userId: res.locals.user.id },
     });
+    //returns the reviews
     res.json(reviews);
   } catch (err) {
     next(err);
   }
 });
-
+//  this gets the reviews
 router.get("/:id", async (req, res, next) => {
   try {
     // this turns it into an int
     const id = parseInt(req.params.id);
-
+    // this will find the review
     const review = await prisma.review.findUnique({
       // this gets the specific review from the review id
       where: { id: id },
@@ -66,13 +71,16 @@ router.get("/:id", async (req, res, next) => {
 // this deletes it by the userId
 router.delete("/:reviewId", async (req, res, next) => {
   try {
-    const reviewId = parseInt(req.params.reviewId);
-    const userId = res.locals.user.id;
+    const reviewId = parseInt(req.params.reviewId); //this converts str into int
+    const userId = res.locals.user.id; //this is the id of the user
+    // this will find the review
     const review = await prisma.review.findUnique({
+      // it will look for the id that matches the reviewId
       where: {
         id: reviewId,
       },
     });
+    // if the review is not created by that user he cant update it
     if (review.userId !== userId) {
       return next({
         status: 403,
@@ -86,9 +94,10 @@ router.delete("/:reviewId", async (req, res, next) => {
         message: "Review not found.",
       });
     }
-
+    // this is the code to delete the review
     await prisma.review.delete({
       where: {
+        // if the id matches the reviewId
         id: reviewId,
       },
     });
@@ -101,12 +110,13 @@ router.delete("/:reviewId", async (req, res, next) => {
     });
   }
 });
-// this updates it by the userId
+// this updates it by the reviewId
 router.put("/:reviewId", async (req, res, next) => {
   try {
-    const userId = res.locals.user.id;
-    const reviewId = parseInt(req.params.reviewId);
+    const userId = res.locals.user.id; //this is the userId
+    const reviewId = parseInt(req.params.reviewId); //this turns a str into an int
     const { rating, reviewText } = req.body;
+    //this will find the review
     const review = await prisma.review.findUnique({
       where: {
         id: reviewId,
@@ -128,7 +138,7 @@ router.put("/:reviewId", async (req, res, next) => {
     // this finds the review that has the specific id then updates it
     const updatedReview = await prisma.review.update({
       where: {
-        id: parseInt(reviewId),
+        id: reviewId,
       },
       data: {
         rating: parseInt(rating),

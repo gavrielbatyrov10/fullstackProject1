@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { logout, selectToken } from "../../features/auth/authSlice";
+import { selectToken } from "../../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -11,10 +11,12 @@ export default function SingleItem() {
   const [item, setItem] = useState(null);
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+  // this gets the id of an item from the url
   let { id } = useParams();
   const token = useSelector(selectToken);
   const navigate = useNavigate();
 
+  // this will get the individual item
   async function getItem() {
     try {
       const response = await fetch(`/api/items/${id}`);
@@ -26,6 +28,10 @@ export default function SingleItem() {
       console.error("Error fetching item:", error);
     }
   }
+  // when you save a review it will navigate to the home page
+  const handleSaveReview = () => {
+    navigate("/");
+  };
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -43,7 +49,7 @@ export default function SingleItem() {
       console.error("Error updating item:", error);
     }
   }
-
+  // this will get individual item when the page loads
   useEffect(() => {
     getItem();
   }, []);
@@ -53,7 +59,7 @@ export default function SingleItem() {
     const totalRating = reviews.reduce((acc, review) => acc + review.rating, 0);
     return totalRating / reviews.length;
   }
-
+  // this will save the review
   async function saveReview() {
     try {
       const response = await fetch(`/api/reviews`, {
@@ -130,6 +136,7 @@ export default function SingleItem() {
             (Avg Rating: {calculateAverageRating(item.Review).toFixed(2)})
           </span>
           <br />
+          {/* if the user is logged in show the form */}
           {token && (
             <form
               onSubmit={(e) => {
@@ -137,7 +144,7 @@ export default function SingleItem() {
                 saveReview();
               }}
             >
-              <label>
+              <label className="rating-update">
                 Rating:
                 <input
                   type="number"
@@ -155,7 +162,9 @@ export default function SingleItem() {
                   required
                 />
               </label>
-              <button type="submit">Save Review</button>
+              <button onClick={handleSaveReview} type="submit">
+                Save Review
+              </button>
             </form>
           )}
           <h3 className="review-words">Reviews:</h3>
@@ -168,14 +177,18 @@ export default function SingleItem() {
                 {/* this is the review text */}
                 <div className="review-text">{review.reviewText}</div>
                 {token && (
-                  <div>
+                  <div className="btn-wrapper">
                     <button
+                      className="edit-btn"
                       onClick={() => navigate(`/edit/review/${review.id}`)}
                     >
                       Edit Review
                     </button>
                     <br />
-                    <button onClick={() => deleteReview(review.id)}>
+                    <button
+                      className="delete-btn"
+                      onClick={() => deleteReview(review.id)}
+                    >
                       Delete Review
                     </button>
                   </div>

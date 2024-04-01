@@ -21,13 +21,11 @@ router.use(async (req, res, next) => {
     res.locals.user = user;
     next();
   } catch (err) {
-    console.error(err);
     next(new ServerError(401, "Invalid token."));
   }
 });
 
-// importing from the routes from the specific files
+// making routes by importing the specific files
 router.use("/auth", require("./auth"));
 router.use("/items", require("./items"));
 router.use("/reviews", require("./reviews"));
-router.use("/comments", require("./comments"));

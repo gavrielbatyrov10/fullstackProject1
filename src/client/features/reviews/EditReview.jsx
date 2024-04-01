@@ -11,6 +11,11 @@ export default function EditReview() {
   let { id } = useParams();
   const token = useSelector(selectToken);
   const navigate = useNavigate();
+  const handleUpdateReview = () => {
+    // Navigate to the home page
+    navigate("/");
+  };
+
   useEffect(() => {
     async function fetchReview() {
       try {
@@ -72,13 +77,16 @@ export default function EditReview() {
         <label>
           Review Text:
           <input
+            className="edit-wrapper"
             type="text"
             value={reviewText}
             onChange={(e) => setReviewText(e.target.value)}
             required
           />
         </label>
-        <button type="submit">Update Review</button>
+        <button onClick={handleUpdateReview} className="" type="submit">
+          Update Review
+        </button>
       </form>
     </div>
   );

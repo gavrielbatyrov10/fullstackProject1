@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { logout, selectToken } from "../../features/auth/authSlice";
+import { selectToken } from "../../features/auth/authSlice";
 
 export default function CreateItem() {
   const [description, setDescription] = useState("");
   const token = useSelector(selectToken);
   const [errors, setErrors] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState(""); //to give imgUrl a value we set setImgUrl to a value
 
   const navigate = useNavigate();
-
+  // this calls the backend url to create an item
   async function handleSubmit(event) {
     event.preventDefault();
     try {
@@ -18,7 +18,7 @@ export default function CreateItem() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`, //if the user is logged in
         },
         body: JSON.stringify({ description, imageUrl }),
       });
@@ -26,12 +26,10 @@ export default function CreateItem() {
         navigate("/");
       } else {
         let responseData = await response.json();
-        // setting an error in state so you can display it in your UI
+        // setting an error in state so you can display it to the screen
         setErrors(responseData["error"]);
       }
-    } catch (error) {
-      console.error("Error creating item:", error);
-    }
+    } catch (error) {}
   }
   return (
     <div>
