@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectToken } from "../../features/auth/authSlice";
+import { Link } from "react-router-dom";
 
 export default function Reviews() {
   const [reviews, setreviews] = useState(null);
@@ -27,7 +28,9 @@ export default function Reviews() {
       {reviews ? (
         reviews.map((item) => (
           <div className="item-card" key={item.id}>
-            <h3>{item.reviewText}</h3>
+            <Link to={`/edit/review/${item.id}`} className="item-link">
+              <h3>{item.reviewText}</h3>
+            </Link>
           </div>
         ))
       ) : (

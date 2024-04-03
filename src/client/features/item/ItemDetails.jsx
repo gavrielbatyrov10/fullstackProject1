@@ -162,7 +162,7 @@ export default function SingleItem() {
                   required
                 />
               </label>
-              <button onClick={handleSaveReview} type="submit">
+              <button onClick={() => handleSaveReview} type="submit">
                 Save Review
               </button>
             </form>
