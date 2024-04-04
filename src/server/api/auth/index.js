@@ -4,9 +4,6 @@ const jwt = require("./jwt");
 const bcrypt = require("bcrypt");
 const router = require("express").Router();
 module.exports = router;
-const cors = require("cors");
-
-app.use(cors());
 
 /** Creates new account and returns token */
 router.post("/register", async (req, res, next) => {
