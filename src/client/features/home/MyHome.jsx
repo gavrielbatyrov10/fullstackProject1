@@ -103,7 +103,7 @@ export default function Home() {
             </div>
           ))
         ) : (
-          <p>Loading...</p>
+          <p className="loader"></p>
         )}
       </div>
     </div>

@@ -35,13 +35,8 @@ export default function EditReview() {
         setReview(reviewData);
         setRating(reviewData.rating);
         setReviewText(reviewData.reviewText);
-        console.log(reviewData);
-      } else {
-        console.error("Failed to fetch review:", response.statusText);
       }
-    } catch (error) {
-      console.error("Error fetching review:", error);
-    }
+    } catch (error) {}
   }
   async function deleteComment(commentId) {
     try {
@@ -51,14 +46,13 @@ export default function EditReview() {
           Authorization: `Bearer ${token}`,
         },
       });
+      // if there is no error from backend then it return true
       if (response.ok) {
         await fetchReview();
       } else {
-        let deleteResponse = await response.json();
+        let deleteResponse = await response.json(); //this gets the data in json format
         let message = deleteResponse?.message;
-        if (message) {
-          setError(message);
-        }
+        setError(message);
       }
     } catch (error) {
       console.log(error);

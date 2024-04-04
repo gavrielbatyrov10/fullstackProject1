@@ -14,6 +14,7 @@ router.post("/reviews/:reviewId", async (req, res, next) => {
     }
 
     const review = await prisma.review.findUnique({
+      //this will search if the id is = reviewId
       where: {
         id: reviewId,
       },
@@ -55,6 +56,7 @@ router.get("/", async (req, res, next) => {
       where: {
         userId: userId,
       },
+
       include: {
         review: true,
       },

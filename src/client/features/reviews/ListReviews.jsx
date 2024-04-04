@@ -34,7 +34,7 @@ export default function Reviews() {
           </div>
         ))
       ) : (
-        <p>Loading...</p>
+        <p className="loader"></p>
       )}
     </div>
   );

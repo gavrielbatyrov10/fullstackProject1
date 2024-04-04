@@ -1,6 +1,6 @@
 # Full-stack Template
 
-This template provides a fully functional CRUD app. Once a user has successfully registered for an account and logged in, they can see their existing items, create new items, update existing items, and delete items, add imges for items, and add reviews for those items.
+This template provides a fully functional CRUD app. Once a user has successfully registered for an account and logged in, they can see their existing items, create new items, update existing items, and delete items, add imges for items, and add reviews for those items, add comments for the review.
 
 ## Getting Started
 
