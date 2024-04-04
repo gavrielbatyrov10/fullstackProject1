@@ -25,18 +25,15 @@ export default function Home() {
   // this will fetch to the backend to delete the item
   async function handleDelete(id) {
     try {
-      const deleteResponse = await fetch(
-        `http://localhost:8000/api/items/${id}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${token}`, //you need to be logged in and you have to be the owner
-          },
-        }
-      );
+      const deleteResponse = await fetch(`/api/items/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`, //you need to be logged in and you have to be the owner
+        },
+      });
       if (deleteResponse.ok) {
         // this will  rerender the page to update the items
-        const response = await fetch(`http://localhost:8000/api/items`);
+        const response = await fetch(`/api/items`);
         const result = await response.json();
         setitems(result);
       } else {
