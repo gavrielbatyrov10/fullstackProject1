@@ -73,7 +73,19 @@ router.post("/", async (req, res, next) => {
 // delete
 router.delete("/:id", async (req, res, next) => {
   try {
+    const userId = res.locals.user.id;
     const id = parseInt(req.params.id);
+    const item = await prisma.item.findUnique({
+      //this will look for the specific id of an item  that is passed from the front end
+      where: {
+        id: id,
+      },
+    });
+    if (item.userId !== userId) {
+      return res.status(404).json({
+        message: "You are not allowed to Delete this Item.",
+      });
+    }
     await prisma.item.delete({
       where: {
         id: id,
@@ -109,9 +121,8 @@ router.put("/:itemId", async (req, res, next) => {
     }
     // if i  am trying to update someones item i cant i can only update my own item
     if (item.userId !== userId) {
-      return next({
-        status: 403,
-        message: "You are not allowed to edit this item.",
+      return res.status(404).json({
+        message: "You are not allowed to edit this Item.",
       });
     }
     // this finds the item that has the specific id then updates it

@@ -102,9 +102,8 @@ router.delete("/:commentId", async (req, res, next) => {
     }
 
     if (comment.userId !== userId) {
-      return next({
-        status: 403,
-        message: "You are not authorized to delete this comment.",
+      return res.status(404).json({
+        message: "You are not allowed to delete this comment.",
       });
     }
 
@@ -143,8 +142,7 @@ router.put("/:commentId", async (req, res, next) => {
       });
     }
     if (comment.userId !== userId) {
-      return next({
-        status: 404,
+      return res.status(404).json({
         message: "You are not allowed to edit this comment.",
       });
     }

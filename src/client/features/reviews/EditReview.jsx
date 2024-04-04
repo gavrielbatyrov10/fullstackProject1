@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { logout, selectToken } from "../../features/auth/authSlice";
+import { selectToken } from "../../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -9,6 +9,8 @@ export default function EditReview() {
   const [rating, setRating] = useState("");
   const [reviewText, setReviewText] = useState("");
   const [newBody, setNewBody] = useState("");
+  const [error, setError] = useState("");
+  const [reviewError, setReviewError] = useState("");
   let { id } = useParams();
   const token = useSelector(selectToken);
   const navigate = useNavigate();
@@ -51,8 +53,16 @@ export default function EditReview() {
       });
       if (response.ok) {
         await fetchReview();
+      } else {
+        let deleteResponse = await response.json();
+        let message = deleteResponse?.message;
+        if (message) {
+          setError(message);
+        }
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async function handleSubmit(event) {
@@ -69,11 +79,13 @@ export default function EditReview() {
       if (response.ok) {
         navigate(`/items/${review.itemId}`);
       } else {
-        console.error("Failed to update review:", response.statusText);
+        let editResponse = await response.json();
+        let message = editResponse?.message;
+        if (message) {
+          setReviewError(message);
+        }
       }
-    } catch (error) {
-      console.error("Error updating review:", error);
-    }
+    } catch (error) {}
   }
   async function handleCommentSubmit(event) {
     event.preventDefault();
@@ -100,6 +112,7 @@ export default function EditReview() {
   return (
     <div>
       <h2>Edit Review</h2>
+      {reviewError && <h1 className="edit-error">{reviewError}</h1>}
       <form onSubmit={handleSubmit}>
         <label>
           Rating:
@@ -125,12 +138,13 @@ export default function EditReview() {
         </button>
       </form>
       <h3>Comments:</h3>
+      {error && <h1 className="edit-error">{error}</h1>}
       <ul>
         {review?.Comment?.map((comment) => (
           <li className="commentList" key={comment.id}>
             <div className="commentText">{comment.body}</div>
             {token && (
-              <div className="comment-btn-wrapper">
+              <div className="comment-btn-wrapper btn-wrapper2">
                 <button onClick={() => navigate(`/edit/comment/${comment.id}`)}>
                   Edit Comment
                 </button>

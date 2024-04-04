@@ -1,18 +1,16 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { logout, selectToken } from "../../features/auth/authSlice";
+import { selectToken } from "../../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 export default function EditComment() {
-  const [commentBody, setCommentBody] = useState(null);
+  const [commentBody, setCommentBody] = useState("");
+  const [error, setError] = useState("");
   let { id } = useParams();
   const token = useSelector(selectToken);
   const navigate = useNavigate();
   const [comment, setComment] = useState({});
-  const handleUpdateComment = () => {
-    navigate("/");
-  };
 
   useEffect(() => {
     fetchComment();
@@ -51,7 +49,11 @@ export default function EditComment() {
       if (response.ok) {
         navigate(`/edit/review/${comment.reviewId}`);
       } else {
-        console.error("Failed to update comment:", response.statusText);
+        let editResponse = await response.json();
+        let message = editResponse?.message;
+        if (message) {
+          setError(message);
+        }
       }
     } catch (error) {
       console.error("Error updating review:", error);
@@ -60,6 +62,7 @@ export default function EditComment() {
   return (
     <div>
       <h2>Edit Comment</h2>
+      {error && <h1 className="edit-error">{error}</h1>}
       <form onSubmit={handleSubmit}>
         <label>
           Comment:

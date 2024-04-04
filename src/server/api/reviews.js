@@ -85,9 +85,8 @@ router.delete("/:reviewId", async (req, res, next) => {
     });
     // if the review is not created by that user he cant update it
     if (review.userId !== userId) {
-      return next({
-        status: 403,
-        message: "You are not authorized to delete this review.",
+      return res.status(404).json({
+        message: "You are not allowed to delete this review",
       });
     }
 
@@ -133,8 +132,7 @@ router.put("/:reviewId", async (req, res, next) => {
       });
     }
     if (review.userId !== userId) {
-      return next({
-        status: 403,
+      return res.status(404).json({
         message: "You are not allowed to edit this review.",
       });
     }

@@ -11,6 +11,7 @@ export default function SingleItem() {
   const [item, setItem] = useState(null);
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+  const [error, setError] = useState("");
   // this gets the id of an item from the url
   let { id } = useParams();
   const token = useSelector(selectToken);
@@ -36,7 +37,7 @@ export default function SingleItem() {
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-      await fetch(`/api/items/${item.id}`, {
+      const response = await fetch(`/api/items/${item.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -44,7 +45,15 @@ export default function SingleItem() {
         },
         body: JSON.stringify({ description, imageUrl }),
       });
-      navigate("/");
+      if (response.ok) {
+        navigate("/");
+      } else {
+        let editResponse = await response.json();
+        let message = editResponse?.message;
+        if (message) {
+          setError(message);
+        }
+      }
     } catch (error) {
       console.error("Error updating item:", error);
     }
@@ -109,6 +118,7 @@ export default function SingleItem() {
 
   return (
     <div className="single-item-container">
+      {error && <h1 className="edit-error">{error}</h1>}
       {item ? (
         <div className="item-details">
           <form onSubmit={handleSubmit}>

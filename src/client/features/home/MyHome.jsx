@@ -8,6 +8,8 @@ export default function Home() {
   const [search, setSearch] = useState("");
   const token = useSelector(selectToken);
   const navigate = useNavigate();
+  const [error, setError] = useState("");
+  const [id, setId] = useState("");
 
   async function getItems(search = "") {
     //this will fetch to the backend to get the items and search the items
@@ -23,16 +25,28 @@ export default function Home() {
   // this will fetch to the backend to delete the item
   async function handleDelete(id) {
     try {
-      await fetch(`http://localhost:8000/api/items/${id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`, //you need to be logged in and you have to be the owner
-        },
-      });
-      // this will  rerender the page to update the items
-      const response = await fetch(`http://localhost:8000/api/items`);
-      const result = await response.json();
-      setitems(result);
+      const deleteResponse = await fetch(
+        `http://localhost:8000/api/items/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`, //you need to be logged in and you have to be the owner
+          },
+        }
+      );
+      if (deleteResponse.ok) {
+        // this will  rerender the page to update the items
+        const response = await fetch(`http://localhost:8000/api/items`);
+        const result = await response.json();
+        setitems(result);
+      } else {
+        let getResponse = await deleteResponse.json();
+        let message = getResponse?.message;
+        if (message) {
+          setError(message);
+          setId(id);
+        }
+      }
     } catch (error) {}
   }
 
@@ -61,6 +75,11 @@ export default function Home() {
         {items ? (
           items.map((item) => (
             <div className="item-card" key={item.id}>
+              {error && id === item.id ? (
+                <h1 className="edit-error">{error}</h1>
+              ) : (
+                ""
+              )}
               {/* when we click on this link it will bring us to the item details page */}
               <Link to={`/items/${item.id}`} className="item-link">
                 <img className="img" src={item.imageUrl} />
