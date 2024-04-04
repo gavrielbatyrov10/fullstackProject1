@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectToken } from "../../features/auth/authSlice";
+import { FaPlus, FaTrashCan } from "react-icons/fa6";
 
 export default function Home() {
   const [items, setitems] = useState(null);
@@ -54,20 +55,24 @@ export default function Home() {
 
   return (
     <div className="items-container">
-      <input
-        type="text"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        placeholder="Search"
-      />
-      <h2 className="nav-link">Items</h2>
-      {token ? (
-        <button className="create-btn" onClick={handleCreateItemClick}>
-          Create Item
-        </button>
-      ) : (
-        ""
-      )}
+      <div className="sub-nav flex justify-space-between">
+        <h2 className="nav-link ">Items</h2>
+        <input
+          className="searchInput"
+          type="text"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search"
+        />
+
+        {token ? (
+          <button className="create-btn" onClick={handleCreateItemClick}>
+            <FaPlus />
+          </button>
+        ) : (
+          ""
+        )}
+      </div>
       <div className="container">
         {items ? (
           items.map((item) => (
@@ -79,13 +84,19 @@ export default function Home() {
               )}
               {/* when we click on this link it will bring us to the item details page */}
               <Link to={`/items/${item.id}`} className="item-link">
-                <img className="img" src={item.imageUrl} />
+                <div
+                  className="fullBg"
+                  style={{ backgroundImage: `url(${item.imageUrl})` }}
+                ></div>
+                {/* <img className="img" src={item.imageUrl} /> */}
                 <h3>{item.description}</h3>
               </Link>
               {token ? (
-                <button onClick={() => handleDelete(item.id)}>
-                  Delete Item
-                </button>
+                <div className="flex justify-flex-end">
+                  <button onClick={() => handleDelete(item.id)}>
+                    <FaTrashCan />
+                  </button>
+                </div>
               ) : (
                 ""
               )}

@@ -45,29 +45,27 @@ export default function AuthForm() {
     <>
       <h1>{authAction}</h1>
       <form onSubmit={attemptAuth}>
-        <div>
-          <label className="loggin-user">
-            Username
-            <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              autoComplete="username"
-            />
-          </label>
-        </div>
-        <div>
-          <label className="loggin-user">
-            Password
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              autoComplete="current-password"
-            />
-          </label>
-        </div>
-        <button>{authAction}</button>
+        <fieldset>
+          <label>Username</label>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            autoComplete="username"
+          />
+        </fieldset>
+        <fieldset>
+          <label>Password</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            autoComplete="current-password"
+          />
+        </fieldset>
+        <fieldset className="justify-center">
+          <button>{authAction}</button>
+        </fieldset>
       </form>
       <a onClick={() => setIsLogin(!isLogin)}>{altCopy}</a>
 

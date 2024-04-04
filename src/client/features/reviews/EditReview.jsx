@@ -114,17 +114,17 @@ export default function EditReview() {
       <h2>Edit Review</h2>
       {reviewError && <h1 className="edit-error">{reviewError}</h1>}
       <form onSubmit={handleSubmit}>
-        <label>
-          Rating:
+        <fieldset>
+          <label>Rating:</label>
           <input
             type="number"
             value={rating}
             onChange={(e) => setRating(e.target.value)}
             required
           />
-        </label>
-        <label>
-          Review Text:
+        </fieldset>
+        <fieldset>
+          <label>Review Text:</label>
           <input
             className="edit-wrapper"
             type="text"
@@ -132,10 +132,12 @@ export default function EditReview() {
             onChange={(e) => setReviewText(e.target.value)}
             required
           />
-        </label>
-        <button onClick={() => handleUpdateReview} className="" type="submit">
-          Update Review
-        </button>
+        </fieldset>
+        <fieldset className="justify-center">
+          <button onClick={() => handleUpdateReview} className="" type="submit">
+            Update Review
+          </button>
+        </fieldset>
       </form>
       <h3>Comments:</h3>
       {error && <h1 className="edit-error">{error}</h1>}
@@ -159,13 +161,15 @@ export default function EditReview() {
       </ul>
       {token && (
         <form onSubmit={handleCommentSubmit}>
-          <input
-            type="text"
-            value={newBody}
-            onChange={(e) => setNewBody(e.target.value)}
-            required
-          />
-          <button type="submit">Add Comment</button>
+          <fieldset>
+            <input
+              type="text"
+              value={newBody}
+              onChange={(e) => setNewBody(e.target.value)}
+              required
+            />
+            <button type="submit">Add Comment</button>
+          </fieldset>
         </form>
       )}
     </div>

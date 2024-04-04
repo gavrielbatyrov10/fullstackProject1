@@ -35,24 +35,27 @@ export default function CreateItem() {
     <div>
       <h2>Create Item</h2>
       <form onSubmit={handleSubmit}>
-        <label>
-          Description:
+        <fieldset>
+          <label>Description:</label>
           <input
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
-        </label>
-        <h1>{errors}</h1>
-        <label>
-          Image Url:
+        </fieldset>
+
+        <fieldset>
+          <label>Image Url:</label>
           <input
             type="text"
             value={imageUrl}
             onChange={(e) => setImageUrl(e.target.value)}
           />
-        </label>
-        <button type="submit">Submit</button>
+        </fieldset>
+        <fieldset className="justify-center">
+          <button type="submit">Submit</button>
+        </fieldset>
+        {errors && <h1>{errors}</h1>}
       </form>
     </div>
   );
