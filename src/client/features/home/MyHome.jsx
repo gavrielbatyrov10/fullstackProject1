@@ -66,6 +66,7 @@ export default function Home() {
 
         {token ? (
           <button className="create-btn" onClick={handleCreateItemClick}>
+            <h4 className="post-button-space">Post</h4>
             <FaPlus />
           </button>
         ) : (
