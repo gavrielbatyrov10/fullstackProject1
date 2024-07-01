@@ -202,7 +202,7 @@ align-items: center;
 
 
 h1,h2,h3 {
-  color: white;
+  color: rgb(28, 62, 174);
   text-align: center;
   font-size: 1.4rem;
   padding: 1rem 0px;
@@ -220,12 +220,13 @@ button {
   background-color: @accent;
   color: white;
   padding: 10px 10px;
-
+border: 1px solid black;
   cursor: pointer;
   
   display: flex;
  border-radius: 20px;
-
+justify-content: center;
+align-items: center;
   font-weight: bold;
 position: relative;
 }
@@ -238,7 +239,7 @@ button::after {
   width:100%;
   height:100%;
   border: 2px solid rgb(21, 75, 137); 
-  border-radius: 50%;
+  border-radius: 25%;
   transform: scaleX(0); 
   transform-origin: bottom left;
   transition: transform 0.5s ease;
@@ -251,11 +252,6 @@ button:hover::after {
 }
 
 
-
-
-
-
-
 button:hover {
 color: #333;
 background-color: rgb(255, 255, 255);
@@ -264,7 +260,7 @@ transition: all 500ms ease ;
 }
 
 input {
-  width: 40%;
+  width: 100%;
   height: 30px;
   border-radius: 20px;
   border: 1px solid blue;
@@ -283,7 +279,6 @@ label {
 label:hover {
   color: rgba(94, 94, 94, 0.452);
   font-weight: bold;
-  border-bottom: 1px solid rgb(199, 191, 191);
   cursor: pointer;
   transition: all 400ms ease;
 }
@@ -460,7 +455,29 @@ a {
 .edit-error {
   color: white;
   background-color: #b30e0e;
+  animation-delay: 0.5s;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  animation-name: fadeIn;
+  z-index: 4;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px rgb(255, 0, 0);
+  opacity: 0; /* Initial opacity */
 }
+
+@keyframes fadeIn {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1; /* Fully visible at midpoint */
+  }
+  100% {
+    opacity: 1; /* Back to invisible */
+  }
+}
+
 
 .flex{
   display: flex;

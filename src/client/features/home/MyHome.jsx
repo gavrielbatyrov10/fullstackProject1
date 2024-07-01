@@ -56,7 +56,7 @@ export default function Home() {
   return (
     <div className="items-container">
       <div className="sub-nav flex justify-space-between">
-        <h2 className="nav-link ">Items</h2>
+        <h2 className="nav-link ">PawPals</h2>
         <input
           className="searchInput"
           type="text"
