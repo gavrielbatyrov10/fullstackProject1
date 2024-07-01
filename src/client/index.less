@@ -1,9 +1,9 @@
 @bg: #ffffff;
 @text: #333;
-@link-color: #428bca; // sea blue
+@link-color: #F2613F; // sea blue
 @link-color-hover: darken(@link-color, 10%);
 @base: #0C0C0C;
-@base2: #481E14;
+@base2: #242424;
 @color1: #9B3922;
 @accent: #F2613F;
 
@@ -41,7 +41,7 @@ a {
 
   &:hover {
     text-decoration: underline;
-    color: @link-color-hover;
+    color: rgb(194, 186, 186);
   }
 }
 
@@ -69,10 +69,9 @@ border: 1px solid black;
 }
 
 .item-card {
-border: 1px solid grey;
     border-radius: 5px;
     margin: 1rem;
-    //padding: 0.8rem;
+    padding: 0.1rem;
     // box-shadow: 0 0 2px 2px rgba(255, 255, 255, 0.5);
     max-width: 70vw;
     width: 20em;
@@ -81,7 +80,7 @@ border: 1px solid grey;
   }
 
 .item-card:hover {
-  box-shadow: 0 0 3px 3px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 7px 7px  rgba(@accent);
   transition: all 300ms;
 
 }
@@ -162,8 +161,10 @@ nav {
   margin: 0 2rem;
 }
 .sub-nav{
+  display: flex;
+  justify-content: space-between;
   margin: 0 2rem;
-  padding: 20px 0px;
+  padding: 20px 10px;
 }
 // 
 .loader {
@@ -202,7 +203,7 @@ align-items: center;
 
 
 h1,h2,h3 {
-  color: rgb(28, 62, 174);
+  color: rgb(251, 251, 255);
   text-align: center;
   font-size: 1.4rem;
   padding: 1rem 0px;
@@ -263,10 +264,10 @@ input {
   width: 100%;
   height: 30px;
   border-radius: 20px;
-  border: 1px solid blue;
+  border: 2px solid @accent;
   padding: 10px;
   display: flex;
-
+  box-shadow: 0 1px 3px 3px rgba(#f2603fbb);
 
 }
 
@@ -274,6 +275,7 @@ input {
 label {
   color: @accent;
   font-weight: bold;
+  padding-right:10px;
 
 }
 label:hover {
@@ -380,7 +382,8 @@ font-weight: bold;
 }
 
 .searchInput{
-  margin: 0px;
+  margin: 1rem;
+  padding: 1rem;
 }
 
 a {
