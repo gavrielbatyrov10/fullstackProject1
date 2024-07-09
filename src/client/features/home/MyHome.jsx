@@ -88,12 +88,14 @@ export default function Home() {
                   className="fullBg"
                   style={{ backgroundImage: `url(${item.imageUrl})` }}
                 ></div>
-                {/* <img className="img" src={item.imageUrl} /> */}
                 <h3>{item.description}</h3>
               </Link>
               {token ? (
                 <div className="flex justify-flex-end">
-                  <button onClick={() => handleDelete(item.id)}>
+                  <button
+                    className="delete__btn"
+                    onClick={() => handleDelete(item.id)}
+                  >
                     <FaTrashCan />
                   </button>
                 </div>
