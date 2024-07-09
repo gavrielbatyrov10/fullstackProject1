@@ -22,7 +22,7 @@ export default function Reviews() {
   }, []);
 
   return (
-    <div className="items-container">
+    <div className="items-container page__height">
       <h2>reviews</h2>
 
       {reviews ? (

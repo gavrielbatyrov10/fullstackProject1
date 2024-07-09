@@ -32,7 +32,7 @@ export default function CreateItem() {
     } catch (error) {}
   }
   return (
-    <div>
+    <div className="page__height">
       <h2>Create Item</h2>
       <form onSubmit={handleSubmit}>
         <fieldset>

@@ -104,7 +104,7 @@ export default function EditReview() {
     }
   }
   return (
-    <div>
+    <div className="page__height">
       <h2>Edit Review</h2>
       {reviewError && <h1 className="edit-error">{reviewError}</h1>}
       <form onSubmit={handleSubmit}>
