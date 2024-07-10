@@ -2,7 +2,7 @@
 @text: #333;
 @link-color: #F2613F; // sea blue
 @link-color-hover: darken(@link-color, 10%);
-@base: #0C0C0C;
+@base: #242424;
 @base2: #242424;
 @color1: #9B3922;
 @accent: #F2613F;
@@ -681,6 +681,7 @@ form {
   background: linear-gradient(@color1, @accent);
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  font-size: 36px;
 }
 
 
@@ -770,14 +771,19 @@ form input{
 @media(max-width: 550px) {
   .bottom-navbar {
     position: fixed;
+    display: flex;
     bottom: 0;
     left: 0;
-    width: 100%;
-    background-color: #ffffff;
+    width: 80vw;
+    background-color: #000000;
     z-index: 10;
     border-radius: 30px;
-    max-width: 400px;
+    min-width: 250px;
+height: 70px;
+  }
 
+  .links {
+    font-size: 26px;
   }
 
   .searchInput {
@@ -795,7 +801,7 @@ form input{
   }
 
   
-  
+ 
   .menu {
     display: flex;
     justify-content: center;

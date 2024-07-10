@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { logout, selectToken } from "../features/auth/authSlice";
 import "./Navbar.less";
+import { FaHome } from "react-icons/fa";
+import { TfiWrite } from "react-icons/tfi";
 
 export default function Navbar() {
   const dispatch = useDispatch();
@@ -50,13 +52,13 @@ export default function Navbar() {
         <ul className="menu">
           <li className="links">
             <NavLink to="/" onClick={() => setIsMenuOpen(false)}>
-              Home
+              <FaHome />
             </NavLink>
           </li>
           {token && (
             <li className="links">
               <NavLink to="/reviews" onClick={() => setIsMenuOpen(false)}>
-                Reviews
+                <TfiWrite />
               </NavLink>
             </li>
           )}
