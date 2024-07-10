@@ -27,7 +27,7 @@ const seed = async () => {
     // Create items, reviews, and comments for each user
     for (let i = 0; i < users.length; i++) {
       const user = users[i];
-      for (let j = 1; j <= 20; j++) {
+      for (let j = 1; j <= 10; j++) {
         // Create items
         const item = await prisma.item.create({
           data: {

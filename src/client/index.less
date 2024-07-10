@@ -159,9 +159,6 @@ body{
 
 
 
-.single-item-container {
-  margin: 40px;
-}
 
 
 .item-details {
@@ -172,6 +169,10 @@ body{
   display: flex;
   flex-direction: column;
   justify-content: center;
+  max-width: 400px;
+  margin: 0 auto;
+
+
 }
 
 
@@ -402,6 +403,7 @@ img:hover {
   padding: 2px;
   width: 17.5rem;  
   position: relative;
+  margin-bottom: 80px;
 }
 .btn-wrapper:hover {
   background-color: rgb(0, 0, 0);
@@ -676,8 +678,7 @@ form {
   background-color: white;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-
+margin-bottom: 70px;
 }
 .grad-text{
   background: linear-gradient(@color1, @accent);
@@ -772,6 +773,7 @@ form input{
 
 @media(max-width: 550px) {
   .bottom-navbar {
+    margin-bottom: 20px;
     position: fixed;
     display: flex;
     bottom: 0;
@@ -848,5 +850,7 @@ height: 70px;
   .links {
     display: flex;
     padding: 0.5rem;
+    display: flex;
+    align-items: center;
   }
 }
