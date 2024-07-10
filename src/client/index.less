@@ -59,17 +59,57 @@ body{
   align-items: center;
 }
 
+// .create-btn {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// font-weight: bold;
+// border:none;
+// padding: 1rem;
+// margin-left: 1rem;
+// height: 70px;
+// }
+
+
 .create-btn {
   display: flex;
   justify-content: center;
   align-items: center;
-font-weight: bold;
-border:none;
-padding: 1rem;
-// margin-right: 1rem;
-gap: 10px;
-
+  font-weight: bold;
+  border: none;
+  padding: 1rem 2rem;
+  margin-left: 1rem;
+  height: 70px;
+  background: linear-gradient(45deg, #dc3f3f, #6e161c);
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.5s ease;
 }
+
+.create-btn:hover {
+  background: linear-gradient(45deg, #d1000a, #6a5acd);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.create-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+
+
+
+
+
+
+
+
 .post-button-space {
   padding-right: 5px;
 }
@@ -90,7 +130,7 @@ gap: 10px;
 .item-card:hover {
   box-shadow: 0 7px 7px  rgba(@accent);
   transition: all 300ms;
-
+  transform: translateY(-5px);
 }
 .item-card .fullBg{
   width: 100%;
@@ -174,6 +214,15 @@ nav {
   margin: 0 2rem;
   padding: 20px 10px;
 }
+
+@media (max-width: 550px) {
+  .sub-nav {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+
+  }
+}
 // 
 .loader {
 display: flex;
@@ -241,7 +290,8 @@ position: relative;
 
 .delete__btn {
   width: 100%;
-
+border-radius: 20px;
+margin-bottom: 1rem;
 }
 
 
@@ -254,7 +304,7 @@ input {
   padding: 10px;
   display: flex;
   // box-shadow: 0 1px 3px 3px rgba(#f2603fbb);
-
+font-size: 20px;
 }
 
 
@@ -367,12 +417,46 @@ font-weight: bold;
   border-color: #428bca;
 }
 
-.searchInput{
+// .searchInput{
+//   display: flex;
+//   // margin: 1rem;
+//   padding: 1rem;
+//   height: 100%;
+// }
+.searchInput {
   display: flex;
-  // margin: 1rem;
-  padding: 1rem;
-  height: 100%;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border: 2px solid #310303;
+  border-radius: 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  width: 100%;
+  max-width: 450px;
+  background: linear-gradient(45deg, #d10000, #310303);
 }
+
+.searchInput input {
+  border: none;
+  outline: none;
+  flex: 1;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 25px;
+  background-color: #fff;
+  color: #ffffff;
+}
+
+.searchInput::placeholder {
+  color: #ffffff;
+}
+
+
+
+
+
+
+
 
 a {
   text-align: center;
@@ -532,3 +616,9 @@ form input{
 .color__black {
   color: black;
 }
+
+
+
+
+
+
