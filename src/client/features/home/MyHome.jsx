@@ -54,7 +54,7 @@ export default function Home() {
   }, [search]);
 
   return (
-    <div className="items-container">
+    <div className="items-container page__height">
       <div className="sub-nav flex justify-space-between">
         <input
           className="searchInput"
