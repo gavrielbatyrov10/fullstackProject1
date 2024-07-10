@@ -42,7 +42,7 @@ export default function AuthForm() {
   };
 
   return (
-    <>
+    <div className="page__height">
       <h1>{authAction}</h1>
       <form onSubmit={attemptAuth}>
         <fieldset>
@@ -72,6 +72,6 @@ export default function AuthForm() {
       {(loginLoading || registerLoading) && <p>Please wait...</p>}
       {loginError && <p role="alert">{loginError}</p>}
       {registerError && <p role="alert">{registerError}</p>}
-    </>
+    </div>
   );
 }

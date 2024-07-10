@@ -55,7 +55,7 @@ export default function CreateItem() {
         <fieldset className="justify-center">
           <button type="submit">Submit</button>
         </fieldset>
-        {errors && <h1>{errors}</h1>}
+        {errors && <h1 className="color__black">{errors}</h1>}
       </form>
     </div>
   );
