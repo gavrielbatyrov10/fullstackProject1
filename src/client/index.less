@@ -128,18 +128,20 @@ body{
     background-color: @base2;
     color: black;
     animation: fadeIn 0.5s ease forwards; /* Apply animation */
+    transform: translateY(5px);
 
   }
 
 .item-card:hover {
   box-shadow: 0 7px 7px  rgba(@accent);
   transition: all 300ms;
-  transform: translateY(-5px);
+
 }
 .item-card .fullBg{
   width: 100%;
   height: 200px;
   background-size: cover;
+
 }
 .item-link {
  text-decoration: none;
@@ -148,9 +150,10 @@ body{
 
 .item-link:hover {
  text-decoration: underline 1px;
- color: #f9f9f9;
+ color: #982222;
  text-underline-offset: 0.5rem;
- transition: all 600ms ease-in-out;
+ transition: all 400ms ease-in-out;
+ transform: translateY(-5px);
 }
 
 
