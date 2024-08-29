@@ -17,6 +17,7 @@ import CreateItem from "./features/item/CreateItem.jsx";
 import Reviews from "./features/reviews/ListReviews.jsx";
 import EditReview from "./features/reviews/EditReview.jsx";
 import EditComment from "./features/comment/EditComment.jsx";
+import Footer from "./layout/fOOTER.JSX";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
       { path: "/reviews", element: <Reviews /> },
       { path: "/edit/review/:id", element: <EditReview /> },
       { path: "/edit/comment/:id", element: <EditComment /> },
+      { element: <Footer /> },
     ],
   },
 ]);

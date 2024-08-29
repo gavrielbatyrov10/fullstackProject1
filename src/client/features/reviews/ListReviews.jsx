@@ -27,7 +27,7 @@ export default function Reviews() {
 
       {reviews ? (
         reviews.map((item) => (
-          <div className="item-card" key={item.id}>
+          <div className="item-review" key={item.id}>
             <Link to={`/edit/review/${item.id}`} className="item-link">
               <h3 className="list__reviews">{item.reviewText}</h3>
             </Link>
