@@ -17,7 +17,7 @@ import CreateItem from "./features/item/CreateItem.jsx";
 import Reviews from "./features/reviews/ListReviews.jsx";
 import EditReview from "./features/reviews/EditReview.jsx";
 import EditComment from "./features/comment/EditComment.jsx";
-import Footer from "./layout/fOOTER.JSX";
+import Footer from "./layout/Footer.jsx";
 
 const router = createBrowserRouter([
   {
