@@ -16,7 +16,7 @@ export default function Home() {
     //this will fetch to the backend to get the items and search the items
     const response = await fetch(`/api/items?search=${search}`);
     const result = await response.json(); //gets the response to json
-    setitems(result);
+    setitems(result.reverse()); // Reverse the array to place the latest post at the top
   }
   // this will move to the create items page
   function handleCreateItemClick() {

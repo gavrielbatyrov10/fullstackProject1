@@ -22,14 +22,14 @@ export default function Reviews() {
   }, []);
 
   return (
-    <div className="items-container page__height">
+    <div className="items-containers-2 page__height">
       <h2>reviews</h2>
 
       {reviews ? (
         reviews.map((item) => (
-          <div className="item-review" key={item.id}>
+          <div className="item-reviews-2" key={item.id}>
             <Link to={`/edit/review/${item.id}`} className="item-link">
-              <h3 className="list__reviews">{item.reviewText}</h3>
+              <h3 className="list__reviews-2">{item.reviewText}</h3>
             </Link>
           </div>
         ))
