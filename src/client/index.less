@@ -656,11 +656,17 @@ a {
 
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
+  0% {
     opacity: 1;
+  }
+  10% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 
@@ -668,8 +674,9 @@ a {
   color: white;
   background-color: #b30e0e;
   animation-delay: 0.5s;
-  animation-duration: 3s; /* Specify the duration */
-  animation-iteration-count: infinite; /* Run the animation infinitely */
+  animation-duration: 5s; /* Set total duration to 5 seconds */
+  animation-iteration-count: 1; /* Run the animation once */
+  animation-fill-mode: forwards; /* Retain the final state after animation */
   animation-name: fadeIn;
   z-index: 4;
   box-shadow: 2px 2px 2px rgb(255, 0, 0);
@@ -683,6 +690,7 @@ a {
   text-align: center;
   padding: 10px;
 }
+
 
 
 .flex{
