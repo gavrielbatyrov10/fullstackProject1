@@ -53,7 +53,10 @@ export default function Home() {
     getItems(search);
   }, [search]);
 
-  return (
+  return (<>
+
+<h1>post a meme</h1>
+
     <div className="items-container page__height">
       <div className="sub-nav flex justify-space-between">
         <input
@@ -61,7 +64,7 @@ export default function Home() {
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search"
+          placeholder="Search By Title"
         />
 
         {token ? (
@@ -88,7 +91,7 @@ export default function Home() {
                   className="fullBg"
                   style={{ backgroundImage: `url(${item.imageUrl})` }}
                 ></div>
-                <h3>{item.description}</h3>
+                <h3 className="card__title">{item.description}</h3>
               </Link>
               {token ? (
                 <div className="flex justify-flex-end">
@@ -109,5 +112,6 @@ export default function Home() {
         )}
       </div>
     </div>
+    </>
   );
 }
