@@ -68,11 +68,15 @@ a {
 
 
 .container {
+
+
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  max-width: 60vw;
+  margin: 0 auto;
 }
 
 // .create-btn {
@@ -187,26 +191,29 @@ a {
 
 
 .item-card {
-  margin: 0.4rem;
+
+
+
+
+  margin: 2rem;
   padding: 0.1rem;
   background-color: #ebebeb2c;
   color: black;
   animation: fadeIn 0.5s ease forwards;
   transform: translateY(5px);
-  width: 15rem;
+  width: 12rem;
   height: 18rem;
   box-sizing: border-box;
   overflow: hidden;
-box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.595);
-  display: flex;
+box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;  display: flex;
   flex-direction: column;
   border-radius: 4px;
 }
 
 .item-card:hover {
+box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
   transition: all 100ms ease-in-out;
-  border: 2px solid #007bff;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
 .item-card .fullBg {
@@ -219,11 +226,13 @@ box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.595);
 }
 
 .card__title {
-  font-size: 2rem;
+  font-size: 1rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   padding: 0.4rem;
+  text-align: left;
+font-weight:100;
 }
 
 .item-link {
@@ -358,7 +367,6 @@ align-items: center;
 
 
 h2,h3 {
-  color: rgb(65, 65, 177);
   text-align: center;
   font-size: 1.4rem;
   padding: 1rem 0px;
@@ -369,6 +377,14 @@ h1 {
   text-align: center;
   font-size: 4.4rem;
   padding: 1rem 0px;
+
+
+color: #e0dfdc;
+background: #556677;
+letter-spacing: .1em;
+text-shadow: 0 -1px 0 #fff, 0 1px 0 #2e2e2e, 0 2px 0 #2c2c2c, 0 3px 0 #2a2a2a, 0 4px 0 #282828, 0 5px 0 #262626, 0 6px 0 #242424, 0 7px 0 #222, 0 8px 0 #202020, 0 9px 0 #1e1e1e, 0 10px 0 #1c1c1c, 0 11px 0 #1a1a1a, 0 12px 0 #181818, 0 13px 0 #161616, 0 14px 0 #141414, 0 15px 0 #121212, 0 22px 30px rgba(0,0,0,0.9);
+color: #e0dfdc;
+background: #556677;
 }
 
 .edit-wrapper {
@@ -401,10 +417,11 @@ button:active {
 .delete__btn {
   width: 30%;
   display: flex;
-  justify-content: center;
-  text-align: center;
+
   margin: 0 auto;
-margin-bottom: 1rem;
+position: absolute;
+bottom: 1rem;
+left: 1rem;
 }
 
 /* Target submit button inside form with id 'myForm' */
@@ -536,19 +553,13 @@ font-weight: bold;
   border-color: #428bca;
 }
 
-// .searchInput{
-//   display: flex;
-//   // margin: 1rem;
-//   padding: 1rem;
-//   height: 100%;
-// }
+
 .searchInput {
-  border-radius: 4px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 1rem;
-  border: 2px solid #310303;
+  padding: 1rem 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 100%;
   margin-bottom: 10px;
@@ -747,7 +758,10 @@ fieldset{
 
 
 .page__height {
+  background: linear-gradient(45deg, #ffffff, #e3e9ee);
+
   min-height: 100vh;
+  cursor: crosshair;
 }
 
 .color__black {
@@ -970,13 +984,13 @@ footer {
 }
 
 .top-navbar h1 {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--text-light);
-  letter-spacing: 1px;
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-size: 3rem;
+color: #e0dfdc;
+background: #556677;
+letter-spacing: .1em;
+text-shadow: 0 -1px 0 #fff, 0 1px 0 #2e2e2e, 0 2px 0 #2c2c2c, 0 3px 0 #2a2a2a, 0 4px 0 #282828, 0 5px 0 #262626, 0 6px 0 #242424, 0 7px 0 #222, 0 8px 0 #202020, 0 9px 0 #1e1e1e, 0 10px 0 #1c1c1c, 0 11px 0 #1a1a1a, 0 12px 0 #181818, 0 13px 0 #161616, 0 14px 0 #141414, 0 15px 0 #121212, 0 22px 30px rgba(0,0,0,0.9);
+color: #007bff;
+background: #556677;
 }
 
 /* Menu items */
@@ -1016,12 +1030,7 @@ nav ul {
   box-shadow: #0000005b 0px 4px 15px;
 }
 
-.logo {
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: #fff;
-  letter-spacing: 1px;
-}
+
 .open-search-btn {
   font-size: 1.6rem;
 color: #0b2479;
@@ -1180,7 +1189,7 @@ color: #0b2479;
   flex-direction: column;
   gap: 1.75rem;
   animation: slideUp 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-  border: 1px solid rgba(0,0,0,0.08);
+  border: none;
   overflow: hidden;
 }
 
