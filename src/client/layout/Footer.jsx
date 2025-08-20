@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { logout, selectToken } from "../features/auth/authSlice";
+import "../../client/index.less";
 
 export default function Footer() {
   const dispatch = useDispatch();
@@ -15,21 +16,23 @@ export default function Footer() {
   return (
     <footer>
       <ul className="menu__footer">
-        <li className="links">
-          <NavLink to="/">Home</NavLink>
+        <li className="links2">
+          <NavLink to="/" className="footer-link">Home</NavLink>
         </li>
         {token && (
-          <li className="links">
-            <NavLink to="/reviews">Reviews</NavLink>
+          <li className="links2">
+            <NavLink to="/reviews" className="footer-link">Reviews</NavLink>
           </li>
         )}
         {token ? (
-          <li className="links">
-            <a onClick={handleLogout}>Log Out</a>
+          <li className="links2">
+            <button onClick={handleLogout} className="footer-link logout-btn">
+              Log Out
+            </button>
           </li>
         ) : (
-          <li className="links">
-            <NavLink to="/login">Log In</NavLink>
+          <li className="links2">
+            <NavLink to="/login" className="footer-link">Log In</NavLink>
           </li>
         )}
       </ul>

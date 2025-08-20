@@ -70,8 +70,8 @@ export default function AuthForm() {
       <a onClick={() => setIsLogin(!isLogin)}>{altCopy}</a>
 
       {(loginLoading || registerLoading) && <p>Please wait...</p>}
-      {loginError && <p role="alert">{loginError}</p>}
-      {registerError && <p role="alert">{registerError}</p>}
+      {loginError && <p className="red" role="alert">{loginError}</p>}
+      {registerError && <p className="red" role="alert">{registerError}</p>}
     </div>
   );
 }

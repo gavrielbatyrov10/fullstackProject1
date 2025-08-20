@@ -162,7 +162,7 @@ export default function EditReview() {
               onChange={(e) => setNewBody(e.target.value)}
               required
             />
-            <button type="submit">Add Comment</button>
+            <button className="update__review--btn" type="submit">Add Comment</button>
           </fieldset>
         </form>
       )}

@@ -2,9 +2,11 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { logout, selectToken } from "../features/auth/authSlice";
-import "./Navbar.less";
+import "../../client/index.less";
+
 import { FaHome } from "react-icons/fa";
 import { TfiWrite } from "react-icons/tfi";
+import Search from "../features/home/Search";
 
 export default function Navbar() {
   const dispatch = useDispatch();
@@ -20,10 +22,14 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Regular Navbar for screens over 550px */}
+      {/* Desktop Navbar */}
       <nav className="top-navbar">
-        <h1 className="grad-text">PawPals</h1>
+        <h1 className="logo">PawPals</h1>
         <ul className="menu1">
+ <li className="links-search">
+              <Search />
+            </li>
+
           <li className="links">
             <NavLink to="/">Home</NavLink>
           </li>
@@ -31,10 +37,17 @@ export default function Navbar() {
             <li className="links">
               <NavLink to="/reviews">Reviews</NavLink>
             </li>
+           
           )}
+
+           
+           
+          
           {token ? (
             <li className="links">
-              <a onClick={handleLogout}>Log Out</a>
+              <button className="logout-btn" onClick={handleLogout}>
+                Log Out
+              </button>
             </li>
           ) : (
             <li className="links">
@@ -44,9 +57,12 @@ export default function Navbar() {
         </ul>
       </nav>
 
-      {/* Sticky Navbar for screens under 550px */}
+      {/* Mobile Navbar */}
       <nav className={`bottom-navbar ${isMenuOpen ? "open" : ""}`}>
-        <div className="menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        <div
+          className="menu-toggle"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
           ☰
         </div>
         <ul className="menu">
@@ -64,7 +80,9 @@ export default function Navbar() {
           )}
           {token ? (
             <li className="links">
-              <a onClick={handleLogout}>Log Out</a>
+              <button className="logout-btn" onClick={handleLogout}>
+              Log Out
+              </button>
             </li>
           ) : (
             <li className="links">
